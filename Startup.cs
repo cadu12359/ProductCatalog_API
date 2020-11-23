@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using ProductCatalog_API.Data;
+using ProductCatalog_API.Repositories;
 
 namespace ProductCatalog_API
 {
@@ -16,6 +17,7 @@ namespace ProductCatalog_API
         {
             services.AddMvc();
             services.AddScoped<StoreDataContext, StoreDataContext>();
+            services.AddTransient<ProductRepository, ProductRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
