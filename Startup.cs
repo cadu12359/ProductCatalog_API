@@ -16,6 +16,8 @@ namespace ProductCatalog_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddResponseCompression();
+
             services.AddScoped<StoreDataContext, StoreDataContext>();
             services.AddTransient<ProductRepository, ProductRepository>();
         }
@@ -28,6 +30,7 @@ namespace ProductCatalog_API
             }
 
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }
