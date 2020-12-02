@@ -20,6 +20,10 @@ namespace ProductCatalog_API
 
             services.AddScoped<StoreDataContext, StoreDataContext>();
             services.AddTransient<ProductRepository, ProductRepository>();
+
+            services.AddSwaggerGen(x=>{
+                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "ProductCatalog API", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -31,6 +35,11 @@ namespace ProductCatalog_API
 
             app.UseMvc();
             app.UseResponseCompression();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductCatalog - v1");
+            });
         }
     }
 }
